@@ -27,6 +27,10 @@ class InstallationTests(unittest.TestCase):
             '---\nname: example-skill\ndescription: "Example"\n---\n# Instructions\n'
         )
         (self.source / "references" / "data.md").write_text("reference content\n")
+        (self.source / "agents").mkdir()
+        (self.source / "agents" / "auto-apply.md").write_text(
+            "For a matching task, read `{skill_path}` before editing code.\n"
+        )
 
     def run_install(self, tool="codex", dry_run=False):
         with contextlib.redirect_stdout(io.StringIO()):
@@ -63,7 +67,9 @@ class InstallationTests(unittest.TestCase):
     def test_cursor_reuses_compatible_installation(self):
         self.run_install("codex")
         self.run_install("cursor")
-        self.assertFalse((self.project / ".cursor").exists())
+        self.assertFalse((self.project / ".cursor" / "skills").exists())
+        rule = self.project / ".cursor/rules/example-skill-auto.mdc"
+        self.assertIn(".agents/skills/example-skill/SKILL.md", rule.read_text())
 
     def test_cursor_rejects_conflicting_compatible_skill(self):
         target = self.project / ".claude" / "skills" / "example-skill"
@@ -106,6 +112,77 @@ class InstallationTests(unittest.TestCase):
             code = installer.main(["--tool", "claude", "--user"])
         self.assertEqual(code, 0)
         self.assertTrue((user / ".claude/skills/example-skill/SKILL.md").is_file())
+        self.assertFalse((user / ".claude/rules").exists())
+        self.assertFalse((user / "AGENTS.md").exists())
+
+    def test_project_routing_points_to_installed_skill_for_each_client(self):
+        paths = {
+            "codex": "AGENTS.md",
+            "claude": ".claude/rules/example-skill-auto.md",
+            "cursor": ".cursor/rules/example-skill-auto.mdc",
+        }
+        for tool, relative in paths.items():
+            self.project = self.base / (tool + "-routing")
+            self.project.mkdir()
+            self.run_install(tool)
+            rule = self.project / relative
+            content = rule.read_text()
+            self.assertIn(f"{installer.DIRECTORIES[tool]}/skills/example-skill/SKILL.md", content)
+            self.assertNotIn("{skill_path}", content)
+            if tool == "cursor":
+                self.assertTrue(content.startswith("---\nalwaysApply: true\n---\n"))
+            first_mtime = rule.stat().st_mtime_ns
+            self.run_install(tool)
+            self.assertEqual(rule.stat().st_mtime_ns, first_mtime)
+
+    def test_codex_preserves_unrelated_instruction_bytes_and_permissions(self):
+        path = self.project / "AGENTS.md"
+        original = b"# Existing instructions\r\nKeep my project conventions.\r\n"
+        path.write_bytes(original)
+        path.chmod(0o640)
+        self.run_install()
+        self.assertTrue(path.read_bytes().startswith(original))
+        self.assertEqual(path.stat().st_mode & 0o777, 0o640)
+        first_content = path.read_bytes()
+        self.run_install()
+        self.assertEqual(path.read_bytes(), first_content)
+
+    def test_codex_updates_active_override_without_touching_base_instructions(self):
+        ordinary = self.project / "AGENTS.md"
+        override = self.project / "AGENTS.override.md"
+        ordinary.write_text("base instructions\n")
+        override.write_text("active override\n")
+        self.run_install()
+        self.assertEqual(ordinary.read_text(), "base instructions\n")
+        self.assertTrue(override.read_text().startswith("active override\n"))
+        self.assertIn(".agents/skills/example-skill/SKILL.md", override.read_text())
+
+    def test_malformed_instruction_block_aborts_before_skill_copy(self):
+        path = self.project / "AGENTS.md"
+        original = "<!-- BEGIN developer-skills:example-skill -->\nunfinished\n"
+        path.write_text(original)
+        with self.assertRaises(ValueError):
+            self.run_install()
+        self.assertEqual(path.read_text(), original)
+        self.assertFalse((self.project / ".agents").exists())
+
+    def test_existing_unowned_rule_is_preserved_before_any_copy(self):
+        path = self.project / ".claude/rules/example-skill-auto.md"
+        path.parent.mkdir(parents=True)
+        path.write_text("user-owned instruction\n")
+        with self.assertRaises(ValueError):
+            self.run_install("claude")
+        self.assertEqual(path.read_text(), "user-owned instruction\n")
+        self.assertFalse((self.project / ".claude/skills").exists())
+
+    def test_instruction_symlink_is_not_followed(self):
+        outside = self.base / "private-instructions.md"
+        outside.write_text("private content\n")
+        (self.project / "AGENTS.md").symlink_to(outside)
+        with self.assertRaises(ValueError):
+            self.run_install()
+        self.assertEqual(outside.read_text(), "private content\n")
+        self.assertFalse((self.project / ".agents").exists())
 
     def test_missing_project_fails_without_creating_it(self):
         missing = self.base / "missing"

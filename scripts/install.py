@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
-"""Copy portable skills to a chosen client; never overwrite an existing skill."""
+"""Install skills and project auto-routing without overwriting unrelated instructions."""
 
 import argparse
 import hashlib
 import re
 import shutil
+import os
+import stat
 import sys
 import tempfile
 from pathlib import Path
@@ -58,7 +60,73 @@ def check_destination(base, destination):
             raise ValueError(f"Путь назначения занят файлом: {current}")
 
 
-def install(root, tool, base, dry_run=False):
+def read_instruction(base, path):
+    check_destination(base, path.parent)
+    if path.is_symlink() or (path.exists() and not path.is_file()):
+        raise ValueError(f"Ожидается обычный файл инструкций: {path}")
+    return path.read_bytes().decode("utf-8") if path.exists() else None
+
+
+def managed_block(text, name, body):
+    start = f"<!-- BEGIN developer-skills:{name} -->"
+    end = f"<!-- END developer-skills:{name} -->"
+    block = f"{start}\n{body.rstrip()}\n{end}"
+    if start not in text and end not in text:
+        separator = "" if not text else ("\n" if text.endswith("\n") else "\n\n")
+        return text + separator + block + "\n"
+    if text.count(start) != 1 or text.count(end) != 1 or text.index(start) >= text.index(end):
+        raise ValueError(f"Повреждены маркеры автоматического правила {name}")
+    return text[:text.index(start)] + block + text[text.index(end) + len(end):]
+
+
+def routing_plan(base, tool, plan):
+    updates = {}
+    for source, destination, existing in plan:
+        template = source / "agents" / "auto-apply.md"
+        if not template.is_file():
+            continue
+        installed = existing[0] if existing else destination
+        skill_path = (installed / "SKILL.md").relative_to(base).as_posix()
+        body = "Путь к навыку ниже указан относительно корня проекта.\n\n" + template.read_text(
+            encoding="utf-8"
+        ).replace("{skill_path}", skill_path)
+        if tool == "codex":
+            override = base / "AGENTS.override.md"
+            override_text = read_instruction(base, override)
+            path = override if override_text else base / "AGENTS.md"
+            old = updates[path][0] if path in updates else read_instruction(base, path)
+            current = updates[path][1] if path in updates else (old or "")
+            updates[path] = (old, managed_block(current, source.name, body))
+        else:
+            extension = ".mdc" if tool == "cursor" else ".md"
+            path = base / DIRECTORIES[tool] / "rules" / f"{source.name}-auto{extension}"
+            old = read_instruction(base, path)
+            content = managed_block("", source.name, body)
+            if tool == "cursor":
+                content = "---\nalwaysApply: true\n---\n\n" + content
+            if old is not None and old != content:
+                raise ValueError(f"Существующее правило отличается и сохранено без изменений: {path}")
+            updates[path] = (old, content)
+    return updates
+
+
+def write_instruction(base, path, old, content):
+    # Recheck the snapshot before replacing an instruction file atomically.
+    if read_instruction(base, path) != old:
+        raise ValueError(f"Файл инструкций изменился во время установки: {path}")
+    path.parent.mkdir(parents=True, exist_ok=True)
+    mode = stat.S_IMODE(path.stat().st_mode) if path.exists() else 0o644
+    with tempfile.NamedTemporaryFile(dir=path.parent, prefix=".skill-routing-", delete=False) as stream:
+        temporary = Path(stream.name)
+        stream.write(content.encode("utf-8"))
+    try:
+        os.chmod(temporary, mode)
+        os.replace(temporary, path)
+    finally:
+        temporary.unlink(missing_ok=True)
+
+
+def install(root, tool, base, dry_run=False, project_rules=True):
     sources = skill_sources(root)
     plan = []
     for source in sources:
@@ -78,7 +146,8 @@ def install(root, tool, base, dry_run=False):
                 existing.append(candidate)
         plan.append((source, destination, existing))
 
-    # Preflight every skill before creating any directories.
+    # Preflight all skills and routing files before creating any directories.
+    routes = routing_plan(base, tool, plan) if project_rules else {}
     for source, destination, existing in plan:
         if existing:
             print(f"Уже доступен: {existing[0]}")
@@ -95,6 +164,15 @@ def install(root, tool, base, dry_run=False):
             staged.rename(destination)
         print(f"Установлен: {destination}")
 
+    for path, (old, content) in routes.items():
+        if old == content:
+            continue
+        if dry_run:
+            print(f"Будет добавлено автоматическое правило: {path}")
+        else:
+            write_instruction(base, path, old, content)
+            print(f"Автоматическое правило: {path}")
+
 
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
@@ -108,7 +186,8 @@ def main(argv=None):
     try:
         if not base.is_dir():
             raise ValueError(f"Каталог проекта/пользователя не существует: {base}")
-        install(Path(__file__).resolve().parent.parent, args.tool, base, args.dry_run)
+        install(Path(__file__).resolve().parent.parent, args.tool, base, args.dry_run,
+                project_rules=not args.user)
     except (OSError, ValueError) as error:
         print(f"Ошибка: {error}", file=sys.stderr)
         return 1

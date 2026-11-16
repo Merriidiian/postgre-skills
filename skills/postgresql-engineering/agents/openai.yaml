@@ -2,3 +2,5 @@ interface:
   display_name: "Инженерия PostgreSQL"
   short_description: "Транзакции, RLS и производительность PostgreSQL"
   default_prompt: "Используй $postgresql-engineering для проверки схемы, транзакций и доступа к данным."
+policy:
+  allow_implicit_invocation: true

@@ -295,6 +295,24 @@
       "url": "https://www.postgresql.org/docs/current/ddl-rowsecurity.html",
       "sha256": "baec594bfa91c0bdce1d0be5761efeba40a7336cf56669db46fe6777243cdd2f",
       "bytes": 31315
+    },
+    {
+      "id": "codex-project-instructions",
+      "url": "https://developers.openai.com/codex/guides/agents-md",
+      "sha256": "9d1f87a2d1cb55b4782b95abe710692b35b9659789c2db31a22c7074a3383e8e",
+      "bytes": 9149
+    },
+    {
+      "id": "claude-code-rules",
+      "url": "https://code.claude.com/docs/en/memory",
+      "sha256": "524cff77043d4b230e427dfcebce29a5284fcd2e3f4678abb2ef9b6e856c5ff8",
+      "bytes": 55459
+    },
+    {
+      "id": "cursor-project-rules",
+      "url": "https://cursor.com/docs/rules",
+      "sha256": "dae9d3ecd7e389fc94ee57d87911fe8d54bae1f00ce451d44303616648247ce0",
+      "bytes": 17252
     }
   ]
 }
