@@ -1,0 +1,300 @@
+{
+  "prepared_on": "2026-11-16",
+  "language": "ru",
+  "source_handling": "Учебные материалы использованы как данные для авторского обобщения; инструкции практикумов не исполнялись. Полные тексты не включены.",
+  "archives": [
+    {
+      "name": "2 СЕМ (5).zip",
+      "sha256": "28b71ef9b04deca4d321d9bb5086f2cc7f9009a5b5f8a284d01cbdff8d39459d",
+      "bytes": 2382015
+    },
+    {
+      "name": "2 сем (4).zip",
+      "sha256": "fbeef8ed9022fa7069a9e5a7836401d713c1dfaafcba8e622be818cfa07d2508",
+      "bytes": 3009518
+    }
+  ],
+  "entries": [
+    {
+      "archive": "2 СЕМ (5).zip",
+      "entry": "2 СЕМ/РХД-01.docx",
+      "bytes": 132185,
+      "sha256": "4d9bc7f828a05af30c22a39689a1dfe6acd2a26ad7806d234376999cdd08dd98"
+    },
+    {
+      "archive": "2 СЕМ (5).zip",
+      "entry": "2 СЕМ/01.pdf",
+      "bytes": 652467,
+      "sha256": "d2ae12d0727c7935056c16fed72ddf633c1bf77fd990d34b67dc6a53a7b05c4e"
+    },
+    {
+      "archive": "2 СЕМ (5).zip",
+      "entry": "2 СЕМ/РХД-04.docx",
+      "bytes": 145657,
+      "sha256": "59f930ec851a9b69dd59b6adafe10a7f70722c61bdf7462cf064d6337f9426e6"
+    },
+    {
+      "archive": "2 СЕМ (5).zip",
+      "entry": "2 СЕМ/РХД-01.md",
+      "bytes": 69917,
+      "sha256": "855f07d19fe0dda14b4474ca8fa0f19aa183395942826934e44f84a2e6ef8452"
+    },
+    {
+      "archive": "2 СЕМ (5).zip",
+      "entry": "2 СЕМ/РХД-03.md",
+      "bytes": 70609,
+      "sha256": "db160e7f958ee022057f9a13bfe9ffa20e08d05d884c239193627ee27ca7344e"
+    },
+    {
+      "archive": "2 СЕМ (5).zip",
+      "entry": "2 СЕМ/РХД-07.docx",
+      "bytes": 133510,
+      "sha256": "36e5380869ff4ed6f0c2961645e2a7b46effff044cbcafdb11c2724933f27ae0"
+    },
+    {
+      "archive": "2 СЕМ (5).zip",
+      "entry": "2 СЕМ/РХД-05.docx",
+      "bytes": 160461,
+      "sha256": "ef91e28c91af7187da8f09b01054f23624eb45226ee25566324acac9fed33ef0"
+    },
+    {
+      "archive": "2 СЕМ (5).zip",
+      "entry": "2 СЕМ/РХД-06.docx",
+      "bytes": 163170,
+      "sha256": "28b7952f7bdc9e808e6f7a8b541159a8774994fbb359aa4e4f1a4597cc71fda1"
+    },
+    {
+      "archive": "2 СЕМ (5).zip",
+      "entry": "2 СЕМ/02.pdf",
+      "bytes": 456521,
+      "sha256": "a0c33cacd9a36579d67a0fb360e230780366a779571053e1f4ed4b6b23338ac1"
+    },
+    {
+      "archive": "2 СЕМ (5).zip",
+      "entry": "2 СЕМ/teamboard-cqrs.zip",
+      "bytes": 89276,
+      "sha256": "469722e30dd87ddaa9ac2c4cce45dcfa4af947cc4c905b41d70d69214fdc29df"
+    },
+    {
+      "archive": "2 СЕМ (5).zip",
+      "entry": "2 СЕМ/РХД-02.md",
+      "bytes": 48545,
+      "sha256": "a102ca6d8e6423df24485e7941e8dd3646d6359a7c95a08fefe128a71ae895ef"
+    },
+    {
+      "archive": "2 СЕМ (5).zip",
+      "entry": "2 СЕМ/РХД-02.docx",
+      "bytes": 121844,
+      "sha256": "590e5d6ef5fe1819a845ce4f379e89a89c7dd675f885583c33a556252e176279"
+    },
+    {
+      "archive": "2 СЕМ (5).zip",
+      "entry": "2 СЕМ/РХД-03.docx",
+      "bytes": 135727,
+      "sha256": "6fb032665f9a30772204bfb4e7398601c8645290938bc0553de5ae2d2e86205a"
+    },
+    {
+      "archive": "2 сем (4).zip",
+      "entry": "2 сем/01.pdf",
+      "bytes": 916088,
+      "sha256": "96bfba47679421b985297b63ac454454267968fce99522d64a0ed55531c5108a"
+    },
+    {
+      "archive": "2 сем (4).zip",
+      "entry": "2 сем/ПКП-3.docx",
+      "bytes": 111342,
+      "sha256": "a41da08ce0d2322d772f077e1a3e7885fbb0d796f4e8caa0d67a4eba6e853ad5"
+    },
+    {
+      "archive": "2 сем (4).zip",
+      "entry": "2 сем/ПКП-1.docx",
+      "bytes": 137660,
+      "sha256": "adb240ea0fecba20c8ec42af418a5dcc0d7f1e7649561e9bc381004a8b7fdb50"
+    },
+    {
+      "archive": "2 сем (4).zip",
+      "entry": "2 сем/ПКП-7.docx",
+      "bytes": 178925,
+      "sha256": "7f75c75e293247543b6bfcbbab42aea9d26e5ac5941bea449514b667e98f02fb"
+    },
+    {
+      "archive": "2 сем (4).zip",
+      "entry": "2 сем/ПКП-4.docx",
+      "bytes": 113847,
+      "sha256": "aa629397b682bf59e143edf57db1870df4b812933382570bdeede4f2c7162843"
+    },
+    {
+      "archive": "2 сем (4).zip",
+      "entry": "2 сем/ПКП-3.md",
+      "bytes": 22493,
+      "sha256": "c827a68b6454b187a774bf4bd7a973cd6f681cb2a9ed9557ce52dde84ad27a50"
+    },
+    {
+      "archive": "2 сем (4).zip",
+      "entry": "2 сем/ПКП-1.md",
+      "bytes": 95546,
+      "sha256": "eafd708abee6c15bf8b7c4a8fea4e6c3a82c44a7a54c53f9f773107ac4ce513e"
+    },
+    {
+      "archive": "2 сем (4).zip",
+      "entry": "2 сем/ПКП-5.docx",
+      "bytes": 475218,
+      "sha256": "7d0e2596c23b196ce896feef88031b16ecb50f7a645a2fae9d5baf4f9c8e4427"
+    },
+    {
+      "archive": "2 сем (4).zip",
+      "entry": "2 сем/ПКП-2.docx",
+      "bytes": 117573,
+      "sha256": "24564672504a8cd000673fdd173f06ff1784a8659e779ae2fffde115527254b9"
+    },
+    {
+      "archive": "2 сем (4).zip",
+      "entry": "2 сем/ПКП-4.md",
+      "bytes": 34522,
+      "sha256": "d6c370fb5eb225a42891b1f2f5d378ed75f46db200c479c2737094b3d31ebace"
+    },
+    {
+      "archive": "2 сем (4).zip",
+      "entry": "2 сем/02.pdf",
+      "bytes": 519029,
+      "sha256": "17d139946c78c430c11d1c1551406c4b95e0151eba03ed8dc10852842b41ca9b"
+    },
+    {
+      "archive": "2 сем (4).zip",
+      "entry": "2 сем/ПКП-5.md",
+      "bytes": 41325,
+      "sha256": "dbcc75c345c516cfedf81ba28f82beb83ae12bfea3c05b82f7004896b7d1edf1"
+    },
+    {
+      "archive": "2 сем (4).zip",
+      "entry": "2 сем/ПКП-6.docx",
+      "bytes": 172187,
+      "sha256": "6bea638da449ac93f59525879a7b83852b456f7ddc760e057ca0d611f8e0425c"
+    },
+    {
+      "archive": "2 сем (4).zip",
+      "entry": "2 сем/ПКП-2.md",
+      "bytes": 40933,
+      "sha256": "f960689c0a8361877232609e3c77d445cc314ce486452162c40b941bd0192c95"
+    },
+    {
+      "archive": "2 сем (4).zip",
+      "entry": "2 сем/orderflow-cqrs.zip",
+      "bytes": 30424,
+      "sha256": "453d1108efac14ee7bd2b501a1354a7640acbebf836b536aab1be2fe45f0d09f"
+    }
+  ],
+  "target_repository_snapshots": [
+    {
+      "repository": "https://github.com/Merriidiian/postgre-skills",
+      "commit": "bf4159f97b05066fdd635bc75ea5a732164f0aa9",
+      "files": [
+        "LICENSE",
+        "README.md"
+      ],
+      "role": "target; no technical materials at snapshot"
+    }
+  ],
+  "official_documentation": [
+    {
+      "id": "claude-code-skills",
+      "url": "https://code.claude.com/docs/en/skills",
+      "sha256": "654fd3e23932c9a0e0f79f382a348a231ed8add3944c7ef3e3cec543589a6060",
+      "bytes": 119798
+    },
+    {
+      "id": "claude-custom",
+      "url": "https://support.claude.com/en/articles/12512198-how-to-create-custom-skills",
+      "final_url": "https://support.claude.com/en/articles/12512198-how-to-create-custom-skills",
+      "status": 200,
+      "sha256": "b1a8672bc8a3ddd3e714f01d28b6c0270aec82c36be9405c7342c1902bb5ea44",
+      "bytes": 248794
+    },
+    {
+      "id": "codex-skills",
+      "url": "https://developers.openai.com/codex/skills",
+      "sha256": "95b5ef4d0581d9eeeee342ef4718e77ed7574fe9c61ae28e1c2bffa4c6bdb411",
+      "bytes": 11396
+    },
+    {
+      "id": "cursor-skills",
+      "url": "https://cursor.com/docs/skills",
+      "sha256": "c4b7a775e2687533c2fcb0d6b5a52d8d5ce60c90fbcd010a0bf30f0b6544bce6",
+      "bytes": 18798
+    },
+    {
+      "id": "go-code-review",
+      "url": "https://go.dev/wiki/CodeReviewComments",
+      "sha256": "5ab2cf808bfce281fe046586f167e6f36c87c539a7f125f9187f5700ea8d26ba",
+      "bytes": 56875
+    },
+    {
+      "id": "go-context",
+      "url": "https://pkg.go.dev/context",
+      "final_url": "https://pkg.go.dev/context",
+      "status": 200,
+      "sha256": "e9efe1eefff0255681b44b6befa31ad9bfcf6b443198baafb23920aaa062abcf",
+      "bytes": 96041
+    },
+    {
+      "id": "go-http",
+      "url": "https://pkg.go.dev/net/http",
+      "final_url": "https://pkg.go.dev/net/http",
+      "status": 200,
+      "sha256": "159cbdedb5d85bd18c5e8dfe5dbb06ac240966f47a5c36a4dfec84564caea124",
+      "bytes": 482812
+    },
+    {
+      "id": "postgres-config",
+      "url": "https://www.postgresql.org/docs/current/functions-admin.html",
+      "final_url": "https://www.postgresql.org/docs/current/functions-admin.html",
+      "status": 200,
+      "sha256": "ab85df74f3b28046db4172415df5b959fd97a1a1ca9254d7454f6c584c9b3a39",
+      "bytes": 157305
+    },
+    {
+      "id": "postgres-constraints",
+      "url": "https://www.postgresql.org/docs/current/ddl-constraints.html",
+      "final_url": "https://www.postgresql.org/docs/current/ddl-constraints.html",
+      "status": 200,
+      "sha256": "a4d2eb268e5a217936ec903bc49daa2a6f71b44276c9f8380df1d86d46b22882",
+      "bytes": 46706
+    },
+    {
+      "id": "postgres-createindex",
+      "url": "https://www.postgresql.org/docs/current/sql-createindex.html",
+      "final_url": "https://www.postgresql.org/docs/current/sql-createindex.html",
+      "status": 200,
+      "sha256": "a33ce3e91a6ec031218b9e4234b12385c251768325a17cf12ae57a8a30e0221c",
+      "bytes": 54702
+    },
+    {
+      "id": "postgres-explain",
+      "url": "https://www.postgresql.org/docs/current/using-explain.html",
+      "final_url": "https://www.postgresql.org/docs/current/using-explain.html",
+      "status": 200,
+      "sha256": "14e83f051cf57e173a5b653f12f1f7fb6737b46eb5b93501a9aa520d520c62cd",
+      "bytes": 70096
+    },
+    {
+      "id": "postgres-isolation",
+      "url": "https://www.postgresql.org/docs/current/transaction-iso.html",
+      "sha256": "4fa0aef47194aa3f5217fd12206d44c510c1358ff0523239e0f984bfcd897bf4",
+      "bytes": 47709
+    },
+    {
+      "id": "postgres-partialindex",
+      "url": "https://www.postgresql.org/docs/current/indexes-partial.html",
+      "final_url": "https://www.postgresql.org/docs/current/indexes-partial.html",
+      "status": 200,
+      "sha256": "5be9d8c353d131659dab1a1d0f7e3cff2d77d55eda335f193f2fc6d43a3d45b9",
+      "bytes": 26530
+    },
+    {
+      "id": "postgres-rls",
+      "url": "https://www.postgresql.org/docs/current/ddl-rowsecurity.html",
+      "sha256": "baec594bfa91c0bdce1d0be5761efeba40a7336cf56669db46fe6777243cdd2f",
+      "bytes": 31315
+    }
+  ]
+}
